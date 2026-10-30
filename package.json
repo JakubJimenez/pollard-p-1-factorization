@@ -1,6 +1,6 @@
 {
   "name": "pollard-p-1-factorization",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pollard p-1 integer factorization implemented in zero-dependency ESM JavaScript.",
   "type": "module",
   "main": "src/index.js",
