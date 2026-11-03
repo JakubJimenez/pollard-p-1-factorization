@@ -32,3 +32,10 @@ The implementation accumulates the smooth exponent by repeated modular multiplic
 A factor is only found when `q-1` is **B-smooth** for at least one prime factor `q` of `n`. Concretely: every prime dividing `q-1` must be ≤ `bound`. If you raise the bound and the routine suddenly returns `null` instead of a factor, you have overshot — the accumulated exponent became a multiple of `q-1` for *every* factor simultaneously, so `gcd(a-1, n) == n` and the method is blind. The wrapper does not retry with a different base automatically; pass a different `base` yourself if this happens.
 
 Negative input is normalised to its absolute value. Inputs below 4 and primes return `null`. Even inputs return `2` immediately without entering the smooth-bound loop.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
